@@ -1,0 +1,53 @@
+---
+title: "Fluid ticket Summary"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Summary
+
+BiWeekly status : 
+```{r , mergedData, collapse=TRUE , echo=FALSE}
+library(knitr)
+knitr::kable(merged_result)
+```
+
+## Plots
+
+Tickets created BiWeekly:
+
+```{r ticketsCreated, echo=FALSE}
+barplot(merged_result$Created_Count, main="Tickets Created", xlab="Bi Weekly",  
+   ylab="Total", names.arg=merged_result$week_grouping, col = "darkblue",
+   border="blue" , )
+
+```
+
+Tickets Resolved BiWeekly:
+
+```{r ticketsResolved, echo=FALSE}
+barplot(merged_result$Resolved_Count, main="Tickets Resolved", xlab="Bi Weekly",  
+   ylab="Total", names.arg=merged_result$week_grouping, , col = "darkgreen"
+    )
+
+```
+
+## Time Spend in a ticket from May
+
+```{r , ticketsTimeSpent, echo=FALSE}
+library(rmarkdown)
+paged_table(summarised_jira_FromMay , options = list(rows.print = 40))
+```
+
+
+## Final summary in Averages (Averaged across biweekly)
+
+```{r , finalSummary, echo=FALSE}
+library(rmarkdown)
+paged_table(finalSummary , options = list(rows.print = 35))
+```
+
+
